@@ -1,0 +1,101 @@
+/* Premium Hero CTA Button Styles */
+.hero-home-section .button {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 600;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-home-section .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s;
+}
+
+.hero-home-section .button:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow:
+        0 12px 48px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.hero-home-section .button:hover::before {
+    left: 100%;
+}
+
+.hero-home-section .button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Premium Navbar CTA Button Styles */
+.navbar .button {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-weight: 600;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s;
+}
+
+.navbar .button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 6px 24px rgba(0, 0, 0, 0.2),
+        0 0 16px rgba(255, 255, 255, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(-1px);
+}
+
+.navbar .button:hover::before {
+    left: 100%;
+}
+
+.navbar .button:active {
+    transform: translateY(0);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}

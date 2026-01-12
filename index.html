@@ -9,7 +9,7 @@
     Alquiler Margarita | Alojamiento y Vehículos Premium en Isla Margarita
   </title>
   <meta
-    content="El ecosistema de hospitalidad y logística de alto rendimiento. Alojamiento premium, vehículos de lujo y concierge 24/7 en Isla Margarita, Venezuela."
+    content="El ecosistema de hospitalidad y logística de alto rendimiento. Alojamiento premium, vehículos de lujo y tu anfitrión 24/7 en Isla Margarita, Venezuela."
     name="description" />
   <meta content="Alquiler Margarita | Alojamiento y Vehículos Premium" property="og:title" />
   <meta
@@ -35,7 +35,7 @@
       "@type": "VacationRental",
       "name": "Alquiler Margarita",
       "image": "https://www.alquilermargarita.com.ve/assets/images/6855852fe557ecdf3f35d343_webclip.png",
-      "description": "El ecosistema de hospitalidad y logística de alto rendimiento. Alojamiento premium, vehículos de lujo y concierge 24/7 en Isla Margarita, Venezuela.",
+      "description": "El ecosistema de hospitalidad y logística de alto rendimiento. Alojamiento premium, vehículos de lujo y tu anfitrión 24/7 en Isla Margarita, Venezuela.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Isla de Margarita",
@@ -67,6 +67,7 @@
   </script>
   <link href="css/webflow-shared.css" rel="stylesheet" type="text/css" />
   <link href="css/webflow-main.css" rel="stylesheet" type="text/css" />
+  <link href="css/hero-cta-premium.css" rel="stylesheet" type="text/css" />
   <!-- FOUC Protection: Removed visibility:hidden check to prevent blank page on JS failure -->
   <!-- 
   <style>
@@ -87,8 +88,8 @@
         (n.className += t + "touch");
     })(window, document);
   </script>
-  <link href="assets/images/6855852e81519834a6723d12_favicon.png" rel="shortcut icon" type="image/x-icon" />
-  <link href="assets/images/6855852fe557ecdf3f35d343_webclip.png" rel="apple-touch-icon" />
+  <link href="assets/images/favicon-32.png" rel="shortcut icon" type="image/x-icon" />
+  <link href="assets/images/webclip.png" rel="apple-touch-icon" />
   <link href="https://www.alquilermargarita.com.ve" rel="canonical" />
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JNB603X52F"></script>
   <!-- Performance: Preconnect to external resources -->
@@ -230,6 +231,18 @@
       });
     </script>
 
+    <!-- Navbar scroll effect -->
+    <script>
+      window.addEventListener('scroll', function () {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    </script>
+
     <!-- ITI styles - duplicate removed, using consolidated block in head -->
   </div>
   <div data-animation="default" class="navbar w-nav" data-wf--navbar--variant="dark-bg" data-easing2="ease"
@@ -278,14 +291,14 @@
               <div class="nav-is-dark">
                 <div data-wf--button--variant="primary-dark" class="primary-button-component-wp">
                   <a href="#" class="button w-variant-811942b0-da26-2564-19c7-b5848db6c968 w-inline-block">
-                    <div>Concierge</div>
+                    <div>Anfitrión</div>
                   </a>
                 </div>
               </div>
               <div class="nav-is-light">
                 <div data-wf--button--variant="primary-light" class="primary-button-component-wp">
                   <a href="#" class="button w-inline-block">
-                    <div>Concierge</div>
+                    <div>Anfitrión</div>
                   </a>
                 </div>
               </div>
@@ -389,9 +402,9 @@
         <div class="home-hero-content">
           <div class="w-embed w-script">
             <h1>
-              Tu isla. Tu ritmo. <br />
+              Alquiler Margarita. <br />
               <span id="typed-text" class="ma-typed-text"
-                data-words="Alojamiento Premium,Movilidad Total,Sin Fricción,Margarita 8K"></span>
+                data-words="Alojamientos Premium,Autos de Lujo,Anfitrión 24/7,Experiencia Completa"></span>
             </h1>
 
             <style>
@@ -464,7 +477,61 @@
           </div>
         </div>
       </div>
+
+      <!-- Scroll Indicator with Text -->
+      <div class="scroll-hint">
+        <span class="scroll-text">Scroll</span>
+        <svg class="scroll-arrow-icon" width="12" height="20" viewBox="0 0 12 20" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 1V19M6 19L1 14M6 19L11 14" stroke="white" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </div>
     </section>
+
+    <!-- Scroll Hint Styles -->
+    <style>
+      .scroll-hint {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 20px;
+        cursor: pointer;
+        animation: scrollFloat 2.5s ease-in-out infinite;
+      }
+
+      .scroll-text {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: white;
+        opacity: 0.9;
+      }
+
+      .scroll-arrow-icon {
+        opacity: 0.9;
+      }
+
+      @keyframes scrollFloat {
+
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+    </style>
+
     <section class="section section-l-inmob no-bottom-padding">
       <div class="main-wp _100vw-on-mob">
         <div class="animation-div">
@@ -518,8 +585,8 @@
                 <a href="https://app.alquilermargarita.com.ve" class="black-text w-inline-block">
                   <div class="featured-model-card">
                     <div class="featured-card-img-wp">
-                      <img loading="lazy" src="assets/images/bahia-magica.png" alt="Bahía Mágica | Alquiler Margarita"
-                        class="featured-card-img" />
+                      <img loading="lazy" src="assets/images/bahia-magica-new.png"
+                        alt="Bahía Mágica | Alquiler Margarita" class="featured-card-img" />
                     </div>
                     <div class="featured-content-wp padding-s">
                       <div class="body-xs-main u-flex-left-center">
@@ -650,12 +717,8 @@
                       alt="Logo of Manta North" class="logo-img" />
                   </div>
                   <div class="logo-compartment bottom-right">
-                    <img src="assets/images/68500c3378ccb01f78906f00_a214b425d8a46f4c693ba638a88d6137_image 18.webp"
-                      loading="lazy" width="156.5" sizes="(max-width: 479px) 100vw, 156.5px"
-                      alt="Logo of United Tiny homes" srcset="
-                          assets/images/68500c3378ccb01f78906f00_a214b425d8a46f4c693ba638a88d6137_image 18-p-500.png 500w,
-                          assets/images/68500c3378ccb01f78906f00_a214b425d8a46f4c693ba638a88d6137_image 18.webp      758w
-                        " class="logo-img" />
+                    <img src="assets/images/logo-sambil-margarita.png" loading="lazy" alt="Logo Sambil Margarita"
+                      class="logo-img" style="max-width: 140px;" />
                   </div>
                 </div>
               </div>
@@ -759,8 +822,8 @@
                     class="product-card-wp" data-feature1-title="Disponibilidad Total"
                     data-feature2-title="Atención Personalizada" data-feature3-title="Respuesta Inmediata"
                     data-feature4-title="Todo Resuelto" data-w-id="2f164fe1-b70a-fac0-23b7-6dcf1cd37e04"
-                    data-desc="Servicio de concierge 24/7 dedicado a tu comodidad. Desde reservas de restaurantes hasta gestión de emergencias."
-                    data-title="Concierge 24/7"
+                    data-desc="Servicio de anfitrión 24/7 dedicado a tu comodidad. Desde reservas de restaurantes hasta gestión de emergencias."
+                    data-title="Anfitrión 24/7"
                     data-feature4-desc="Cualquier solicitud, cualquier hora. Estamos aquí para que disfrutes sin preocupaciones."
                     data-feature3-desc="Respuesta en menos de 15 minutos vía WhatsApp, llamada o app."
                     data-feature2-desc="Conocemos la isla a fondo - te recomendamos los mejores lugares según tus preferencias.">
@@ -768,11 +831,11 @@
                       class="product-img" /><img src="assets/icons/6852e923a75c6df3bcda9dd0_plus-icon.svg"
                       loading="lazy" alt="" class="product-icon" />
                     <div class="product-content">
-                      <h3 class="h3-s product-head">Concierge 24/7</h3>
+                      <h3 class="h3-s product-head">Anfitrión 24/7</h3>
                       <div class="padding-xxs hidden-on-mobile">
                         <div class="product-description">
                           <div class="body-s-main light-text-high-opacity">
-                            Servicio de concierge 24/7 dedicado a tu comodidad.
+                            Servicio de anfitrión 24/7 dedicado a tu comodidad.
                             Desde reservas de restaurantes hasta gestión de emergencias.
                           </div>
                         </div>

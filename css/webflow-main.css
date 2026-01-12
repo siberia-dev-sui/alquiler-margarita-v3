@@ -460,6 +460,26 @@ figure {
   position: relative;
 }
 
+.section.hero-home-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section.hero-home-section .main-wp {
+  position: relative;
+  z-index: 2;
+}
+
 .section.section-l.no-bottom-padding {
   padding-bottom: 0;
 }
@@ -811,11 +831,16 @@ figure {
 
 .navbar {
   z-index: 99999;
-  background-color: #ddd0;
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   width: 100%;
-  padding-top: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   position: fixed;
   inset: 0% 0% auto;
+  transition: all 0.3s ease;
 }
 
 .navbar:where(.w-variant-ac7e690c-1df1-916a-648c-e03b3ebb33a6),
@@ -1375,11 +1400,14 @@ figure {
 }
 
 .onscroll-section {
-  background-image: url(../assets/images/6858fb104dcd1f95db1d3514_88f5bed6a7b7b33097c2e0acff3f5719_onscroll-bg.webp);
-  background-position: 50%;
+  background-image: url(../assets/images/onscroll-premium-v3.png);
+  background-position: center top;
   background-size: cover;
   min-height: 120vh;
   position: relative;
+  /* Mask to ensure perfect blend with white background above */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
 }
 
 .onscroll-section.about-us-bg {

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Premium - Alquiler Margarita</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            min-height: 200vh;
+            overflow-x: hidden;
+        }
+
+        /* === Navbar Container con efectos procedurales === */
+        .premium-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Background con glassmorphism y gradiente procedural */
+        .nav-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(255, 255, 255, 0.08) 0%,
+                    rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .premium-navbar.scrolled .nav-bg {
+            opacity: 1;
+        }
+
+        /* Canvas para efectos procedurales */
+        .nav-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.6;
+            mix-blend-mode: screen;
+        }
+
+        /* Container principal */
+        .nav-container {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        /* === Logo === */
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            font-size: 1.25rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .nav-logo:hover .logo-icon::before {
+            transform: translateX(100%);
+        }
+
+        .logo-text {
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* === Navigation Links === */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.625rem 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+        }
+
+        .nav-link:hover::before {
+            opacity: 1;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* Particle effect en hover */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #667eea;
+            border-radius: 50%;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nav-link:hover::after {
+            bottom: 0;
+            opacity: 1;
+        }
+
+        /* === CTA Button Premium === */
+        .nav-cta {
+            position: relative;
+            padding: 0.75rem 1.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow:
+                0 4px 15px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-cta:hover::before {
+            opacity: 1;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 6px 20px rgba(102, 126, 234, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-cta:active {
+            transform: translateY(0);
+        }
+
+        /* Efecto de brillo animado */
+        .nav-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            bottom: -50%;
+            left: -50%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            transform: rotate(45deg) translateX(-100%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+
+            0%,
+            100% {
+                transform: rotate(45deg) translateX(-100%);
+            }
+
+            50% {
+                transform: rotate(45deg) translateX(100%);
+            }
+        }
+
+        /* === Mobile Menu Button === */
+        .mobile-menu-btn {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .menu-icon {
+            position: relative;
+            width: 20px;
+            height: 2px;
+            background: white;
+            margin: auto;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before,
+        .menu-icon::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon::before {
+            top: -6px;
+        }
+
+        .menu-icon::after {
+            bottom: -6px;
+        }
+
+        /* === Demo Content === */
+        .demo-content {
+            padding: 120px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .demo-hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .demo-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .demo-hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === Responsive === */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-container {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar Premium -->
+    <nav class="premium-navbar" id="navbar">
+        <!-- Background con glassmorphism -->
+        <div class="nav-bg"></div>
+
+        <!-- Canvas para efectos procedurales -->
+        <canvas class="nav-canvas" id="navCanvas"></canvas>
+
+        <!-- Container -->
+        <div class="nav-container">
+            <!-- Logo -->
+            <a href="/" class="nav-logo">
+                <div class="logo-icon">AM</div>
+                <span class="logo-text">Alquiler Margarita</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="nav-links">
+                <a href="#alojamiento" class="nav-link">Alojamiento</a>
+                <a href="#vehiculos" class="nav-link">Vehículos</a>
+                <a href="#experiencias" class="nav-link">Experiencias</a>
+                <a href="#nosotros" class="nav-link">Nosotros</a>
+            </div>
+
+            <!-- CTA Button -->
+            <a href="https://app.alquilermargarita.com.ve" class="nav-cta">Reservar Ahora</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn">
+                <div class="menu-icon"></div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Demo Content -->
+    <div class="demo-content">
+        <div class="demo-hero">
+            <h1>Navbar Premium con Efectos Procedurales</h1>
+            <p>Glassmorphism, partículas animadas y micro-interacciones de alta calidad</p>
+        </div>
+    </div>
+
+    <script>
+        // === Scroll behavior ===
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        // === Procedural Particles Background ===
+        const canvas = document.getElementById('navCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width ||
+                    this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(102, 126, 234, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        // Create particles
+        const particles = [];
+        const particleCount = 30;
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(102, 126, 234, ${0.1 * (1 - distance / 100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // === Mouse interaction ===
+        let mouseX = 0;
+        let mouseY = 0;
+
+        navbar.addEventListener('mousemove', (e) => {
+            const rect = navbar.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            // Attract particles to mouse
+            particles.forEach(particle => {
+                const dx = mouseX - particle.x;
+                const dy = mouseY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 100) {
+                    particle.speedX += dx * 0.0001;
+                    particle.speedY += dy * 0.0001;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
