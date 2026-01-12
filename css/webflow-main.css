@@ -1187,9 +1187,6 @@ figure {
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
   display: grid;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .featured-model-card.feature {
