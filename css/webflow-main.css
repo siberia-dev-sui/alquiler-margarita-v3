@@ -4889,14 +4889,14 @@ figure {
   }
 
   .section.hero-home-section {
-    background-image: url(../assets/images/68506495a525b51e17c8b8dc_hero-phone-img.webp);
-    background-position: 50% 100%;
+    background-image: url(../assets/images/hero-heic.png);
+    background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
-    min-height: 100dvh;
-    padding-top: 10rem;
-    padding-bottom: 15rem;
+    height: auto;
+    min-height: 80vh;
+    padding-top: 6rem;
+    padding-bottom: 8rem;
   }
 
   .section.no-bottom-padding.padding-l.radius-8 {
@@ -4915,10 +4915,10 @@ figure {
   }
 
   .section.space-section {
-    background-image: url(../assets/images/68506d9e5203d46eada595f5_space-phone-bg.webp);
-    background-position: 50% 100%;
+    background-image: url(../assets/images/secondary-hero-bg.png);
+    background-position: 50% 50%;
     background-size: cover;
-    padding-bottom: 25.375rem;
+    padding-bottom: 20rem;
   }
 
   .section.black-bg.modern-section {
